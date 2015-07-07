@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jk前端技术博客</title>
+
+    <!--Application CSS Files-->
+    {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
+
+
+</head>
+<body data-ng-app='bokeApp'>
+<div class="main-left">
+    <div class="mt75">
+        <header class="header">
+            <div class="header-init vertify">
+                <div>
+                    <span class="j"> J </span>
+                    <span class="k"> K </span>
+                </div>
+                <p class="header-title inblock">关注最新前端技术 小生一o_O !</p>
+            </div>
+            <div class="header-scroll vertify">
+                <span> JK </span>
+
+                <p class="header-title inblock">关注最新前端技术 小生一o_O !</p>
+            </div>
+            <div class="header-search inblock">
+                <input type="text" placeholder="输入..."/>
+            </div>
+        </header>
+    </div>
+    <section data-ui-view=''> 
+        <div class="section-main" ng-controller='section'>
+            <div ui-view='shouye'></div>
+            <div ui-view='wenzhang'></div>
+            <div ui-view='jianjie'></div>
+        </div>
+        <div class="section-nav">
+            <nav class="">
+                <ul class="nav nav-navigation">
+                    <li section-name='shouye' ui-sref='shouye' class="active">网站首页</li>
+                    <li section-name='wenzhang' ui-sref='wenzhang'>文章链接</li>
+                    <li section-name='jianjie' ui-sref='jianjie'>个人简介</li>
+                </ul>
+                <span class="nav-span"></span>
+            </nav>
+        </div>
+        <div class="section-tags">
+            <div class="section-tag">
+                <ul class="nav">
+                    <li class="active">标签</li>
+                </ul>
+            </div>
+            <div class="section-hot">
+                <ul class="nav">
+                    <li class="active">热门文章</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+
+    </footer>
+</div>
+<div class="main-right">
+    <div class="bg-1"></div>
+    <div class="bg-2"></div>
+</div>
+
+<!--Application JavaScript Files-->
+{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
+</body>
+</html>
