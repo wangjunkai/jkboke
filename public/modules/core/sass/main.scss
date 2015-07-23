@@ -306,9 +306,15 @@ nav {
     min-height: 2000px;
     .section-view.view-active{
         min-height:1000px;
-        display:none;
+        visibility:hidden;
         padding: 10px;
+        margin: 10px 10px 10px 10px;
+        position: relative;
         @include box-shadow(0px 1px 3px rgb(184, 184, 184));
+    }
+    > div{
+        overflow: hidden;
+        position: relative;
     }
 }
 .section-nav{
@@ -323,6 +329,9 @@ nav {
     min-width: 350px;
     top: 0;
     right: 0;
+    .section-tag,.section-hot{
+        margin: 10px;
+    }
 }
 
 

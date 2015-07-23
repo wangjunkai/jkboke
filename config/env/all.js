@@ -19,6 +19,7 @@ module.exports = {
 			],
 			js: [
 				'public/lib/angular/angular.js',
+				'public/lib/jquery/dist/jquery.js',
 				//'public/lib/angular-resource/angular-resource.js', 
 				//'public/lib/angular-cookies/angular-cookies.js', 
 				//'public/lib/angular-animate/angular-animate.js', 
@@ -29,7 +30,9 @@ module.exports = {
 				//'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
 				'public/modules/core/js/yuyun.js',
 				'public/modules/core/config/core.client.routes.js',
-				'public/modules/core/js/main.js'
+				'public/modules/core/js/main.js',
+				'public/modules/core/js/controller.js',
+				'public/modules/core/js/directive.js'
 			]
 		},
 		css: [

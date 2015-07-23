@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by wangjunkai
  */
 
@@ -286,6 +286,12 @@ YUYUN.fun = (function() {
             Fun.prototype = obj;
             return new Fun();
 
+        },
+        inheritFun:function(c,p){
+            function Fun(){}
+            Fun.prototype = p.prototype;
+            c.prototype = new Fun();
+            return c;
         },
         extend: function(prototype, methed) {
             for (var p in methed) {
