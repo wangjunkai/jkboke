@@ -67,8 +67,8 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			build:{
-				src: 'public/modules/core/js/main.js',
-				dest: 'public/modules/core/js/build/main.min.js'
+				src: 'public/modules/boke/js/main.js',
+				dest: 'public/modules/boke/js/build/main.min.js'
 			}
 		},
 		cssmin: {

@@ -11,7 +11,7 @@ exports.index = function(req, res) {
 };
 //后台
 exports.manage = function(req, res) {
-	res.render('index', {
+	res.render('manage', {
 		user: req.user || null,
 		request: req
 	});

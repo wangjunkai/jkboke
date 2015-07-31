@@ -74,3 +74,12 @@ module.exports.getCSSAssets = function() {
 	var output = this.getGlobbedFiles(this.assets.lib.css.concat(this.assets.css), 'public/');
 	return output;
 };
+
+module.exports.getManageJS = function(){
+	var output = this.getGlobbedFiles(this.managesets.lib.js, 'public/');
+	return output;
+};
+module.exports.getManageCss = function() {
+	var output = this.getGlobbedFiles(this.managesets.lib.css, 'public/');
+	return output;
+};
