@@ -1,0 +1,38 @@
+<section data-ng-controller="ArticleController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>文章列表</h1>
+    </div>
+    <div class="list-group">
+        <ul class="list-unstyled">
+            <li data-ng-repeat="article in articles" class="list-group-item clearfix">
+                <div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
+                    <a class="btn btn-primary" href="/manage/article/edit/{{article._id}}">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove(article);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+                <div class="pull-left">
+                    <small>
+                        <em class="text-muted">
+                            创建
+                            <span data-ng-bind="article.created | date:'mediumDate'"></span>
+                            于
+                            <span data-ng-bind="article.user.username"></span>
+                            类别
+                            <span data-ng-bind=""></span>
+                        </em>
+                    </small>
+
+                    <a style="display: block;" data-ng-bind="article.about" data-ng-href="/manage/article/edit/{{article._id}}">
+                    </a>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+        No articles yet, why don't you <a href="/manage/article/add">create one</a>?
+    </div>
+</section>

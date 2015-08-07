@@ -32,6 +32,15 @@ bokeApp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
+            .state('wenzhang-detail', {
+                url: '/wenzhang/:id',
+                views: {
+                    'wenzhang': {
+                        templateUrl: 'modules/boke/views/detail.client.view.html',
+                        controller: 'initsectionController'
+                    }
+                }
+            })
             .state('jianjie', {
                 url: '/jianjie',
                 views: {

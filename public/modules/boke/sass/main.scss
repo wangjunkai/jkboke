@@ -62,7 +62,6 @@ section {
   position: relative;
   width: 100%;
   margin: 20px 20px 20px 0;
-  min-height: 1000px;
 }
 
 nav {
@@ -346,7 +345,7 @@ nav {
   margin-left: 150px;
   margin-right: 370px;
   .section-view.view-active {
-    min-height: 1000px;
+    min-height: 900px;
     visibility: hidden;
     padding: 10px;
     margin: 10px 10px 10px 10px;
@@ -577,29 +576,136 @@ nav {
           color: #65ADDF;
         }
       }
-      .other {
-        font-size: 12px;
-        color: #CDCDCD;
-        font-family: monospace;
-        display: inline-block;
-        float: right;
-        .comment, .publish, .read, .share {
-          margin-right: 3px;
-          img {
-            width: 14px;
-            height: 14px;
-            vertical-align: top;
-            margin-right: 3px;
+
+    }
+  }
+}
+
+.other {
+  font-size: 12px;
+  color: #CDCDCD;
+  font-family: monospace;
+  .comment, .publish, .read, .share {
+    margin-right: 3px;
+    img {
+      width: 14px;
+      height: 14px;
+      vertical-align: top;
+      margin-right: 3px;
+    }
+  }
+  .share {
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    display: none;
+  }
+  &:hover .share {
+    display: inline-block;
+  }
+}
+
+article {
+  color: #8B8B8B;
+  word-break: break-all;
+  line-height: 1.5;
+  min-height: 350px;
+}
+
+.hr {
+  height: 0;
+  border-top: 1px solid #D3D3D3;
+  margin: 5px 0 15px 0;
+}
+
+.lf {
+  float: left;
+}
+
+.rt {
+  float: right;
+}
+
+.wenzhang_detail {
+  margin: 15px;
+  h2 {
+    text-align: center;
+  }
+  .detail_ather {
+    float: initial;
+    margin: 10px 0;
+    .share {
+      float: initial;
+      display: inline;
+    }
+  }
+  .detail_comment {
+    margin: 5px 0 40px 0;
+    .title {
+      padding: 0 0 2px 3px;
+      border-left: 2px solid #65ADDF;
+      font-size: 14px;
+      color: #B6B6B6;
+    }
+    .content {
+      li {
+        margin: 15px 3px;
+        padding-bottom: 15px;
+        border-bottom: 1px dotted #d3d3d3;
+        .visitor {
+          padding: 0 0 5px 0;
+          font-size: 12px;
+          color: #CACACA;
+          font-family: monospace;
+          &:after {
+            content: '';
+            display: block;
+            clear: both;
           }
         }
-        .share {
-          float: right;
-          margin-right: 10px;
-          cursor: pointer;
-          display: none;
+        .comment {
+          word-break: break-all;
+          text-indent: .8em;
+          font-size: 12px;
+          color: #888;
+          font-family: cursive;
         }
-        &:hover .share {
-          display: inline-block;
+      }
+    }
+  }
+  .publish_comment {
+    input[type=text], textarea, input[type=submit] {
+      @include border-radius(2px);
+      border: 1px solid #cfcfcf;
+      resize: none
+    }
+    margin: 5px 0 40px 0;
+    .title {
+      padding: 0 0 2px 3px;
+      border-left: 2px solid #65ADDF;
+      font-size: 14px;
+      color: #B6B6B6;
+    }
+    .pen, .content {
+      font-size: 12px;
+      margin: 15px 3px;
+      color: #323232;
+      textarea {
+        width: 310px;
+        height: 50px;
+      }
+      input[type=text] {
+        height: 20px;
+        line-height: 20px;
+      }
+      input[type=submit] {
+        width: 60px;
+        height: 20px;
+        background: #ffffff;
+        @include transition(background .5s ease);
+        cursor: pointer;
+        &:hover{
+          background: #e6e6e6;
         }
       }
     }

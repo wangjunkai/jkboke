@@ -25,11 +25,58 @@ manageApp.factory('Users', ['$resource',
     }
 ]);
 
+manageApp.factory('Articles', ['$resource',
+    function ($resource) {
+        return {
+            list: $resource('/article/list', {}, {
+                update: {
+                    method: 'GET'
+                }
+            }),
+            edit: $resource('/article/edit/:articleId', {
+                articleId: '@_id'
+            }, {
+                update: {
+                    method: 'POST'
+                }
+            }),
+            add: $resource('/article/add', {}, {
+                update: {
+                    method: 'POST'
+                }
+            })
+        }
+    }
+]);
 
+
+manageApp.factory('Types', ['$resource',
+    function ($resource) {
+        return {
+            list: $resource('/type/list', {}, {
+                update: {
+                    method: 'GET'
+                }
+            }),
+            edit: $resource('/type/edit/:typeId', {
+                articleId: '@_id'
+            }, {
+                update: {
+                    method: 'POST'
+                }
+            }),
+            add: $resource('/type/add', {}, {
+                update: {
+                    method: 'POST'
+                }
+            })
+        }
+    }
+]);
 //Menu service used for managing  menus
 manageApp.service('Menus', [
 
-    function() {
+    function () {
         // Define a set of default roles
         this.defaultRoles = ['*'];
 
@@ -37,7 +84,7 @@ manageApp.service('Menus', [
         this.menus = {};
 
         // A private function for rendering decision
-        var shouldRender = function(user) {
+        var shouldRender = function (user) {
             if (user) {
                 if (!!~this.roles.indexOf('*')) {
                     return true;
@@ -58,7 +105,7 @@ manageApp.service('Menus', [
         };
 
         // Validate menu existance
-        this.validateMenuExistance = function(menuId) {
+        this.validateMenuExistance = function (menuId) {
             if (menuId && menuId.length) {
                 if (this.menus[menuId]) {
                     return true;
@@ -73,7 +120,7 @@ manageApp.service('Menus', [
         };
 
         // Get the menu object by menu id
-        this.getMenu = function(menuId) {
+        this.getMenu = function (menuId) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 
@@ -82,7 +129,7 @@ manageApp.service('Menus', [
         };
 
         // Add new menu object by menu id
-        this.addMenu = function(menuId, isPublic, roles) {
+        this.addMenu = function (menuId, isPublic, roles) {
             // Create the new menu
             this.menus[menuId] = {
                 isPublic: isPublic || false,
@@ -96,7 +143,7 @@ manageApp.service('Menus', [
         };
 
         // Remove existing menu object by menu id
-        this.removeMenu = function(menuId) {
+        this.removeMenu = function (menuId) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 
@@ -105,7 +152,7 @@ manageApp.service('Menus', [
         };
 
         // Add menu item object
-        this.addMenuItem = function(menuId, menuItemTitle, menuItemURL, menuItemType, menuItemUIRoute, isPublic, roles, position) {
+        this.addMenuItem = function (menuId, menuItemTitle, menuItemURL, menuItemType, menuItemUIRoute, isPublic, roles, position) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 
@@ -128,7 +175,7 @@ manageApp.service('Menus', [
         };
 
         // Add submenu item object
-        this.addSubMenuItem = function(menuId, rootMenuItemURL, menuItemTitle, menuItemURL, menuItemUIRoute, isPublic, roles, position) {
+        this.addSubMenuItem = function (menuId, rootMenuItemURL, menuItemTitle, menuItemURL, menuItemUIRoute, isPublic, roles, position) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 
@@ -153,7 +200,7 @@ manageApp.service('Menus', [
         };
 
         // Remove existing menu object by menu id
-        this.removeMenuItem = function(menuId, menuItemURL) {
+        this.removeMenuItem = function (menuId, menuItemURL) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 
@@ -169,7 +216,7 @@ manageApp.service('Menus', [
         };
 
         // Remove existing menu object by menu id
-        this.removeSubMenuItem = function(menuId, submenuItemURL) {
+        this.removeSubMenuItem = function (menuId, submenuItemURL) {
             // Validate that the menu exists
             this.validateMenuExistance(menuId);
 

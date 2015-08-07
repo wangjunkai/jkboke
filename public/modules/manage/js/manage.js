@@ -12,7 +12,7 @@ manageApp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);
         // Redirect to home view when route not found
-        $urlRouterProvider.otherwise('/manage');
+        //$urlRouterProvider.otherwise('/manage');
         $urlRouterProvider.when('', '/manage');
         // Home state routing
         $stateProvider.
@@ -35,7 +35,39 @@ manageApp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             state('edit-password', {
                 url: '/manage/settings/password',
                 templateUrl: '/modules/manage/views/edit-password.client.view.html'
+            }).
+            state('list-article',{
+                url:'/manage/article/list',
+                templateUrl:'/modules/manage/views/list-article.client.view.html'
+            }).
+            state('add-article',{
+                url:'/manage/article/add',
+                templateUrl:'/modules/manage/views/add-article.client.view.html'
+            }).
+            state('edit-article',{
+                url:'/manage/article/edit/:articleId',
+                templateUrl:'/modules/manage/views/edit-article.client.view.html'
+            }).
+            state('list-type',{
+                url:'/manage/type/list',
+                templateUrl:'/modules/manage/views/list-type.client.view.html'
+            }).
+            state('add-type',{
+                url:'/manage/type/add',
+                templateUrl:'/modules/manage/views/add-type.client.view.html'
+            }).
+            state('edit-type',{
+                url:'/manage/type/edit/:typeId',
+                templateUrl:'/modules/manage/views/edit-type.client.view.html'
             })
     }
 ]);
+manageApp.run(['Menus',function(Menus){
+    Menus.addMenuItem('topbar', '文章', 'article', 'dropdown', '/article(/create)?');
+    Menus.addMenuItem('topbar', '分类', 'type', 'dropdown', '/type(/create)?');
+    Menus.addSubMenuItem('topbar', 'article', '文章列表', 'article/list');
+    Menus.addSubMenuItem('topbar', 'article', '添加文章', 'article/add');
+    Menus.addSubMenuItem('topbar', 'type', '分类列表', 'type/list');
+    Menus.addSubMenuItem('topbar', 'type', '添加分类', 'type/add');
+}]);
 

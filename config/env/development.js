@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/jkboke-dev',
+	db: 'mongodb://localhost/jkboke',
 	app: {
 		title: 'jkboke - Development Environment'
 	},
