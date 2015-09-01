@@ -64,13 +64,13 @@ module.exports = function(grunt) {
 			all: {
 				src: watchFiles.clientCSS
 			}
-		},
+		},/*
 		uglify: {
 			build:{
 				src: 'public/modules/boke/js/main.js',
 				dest: 'public/modules/boke/js/build/main.min.js'
 			}
-		},
+		},*/
 		cssmin: {
 			combine: {
 				files: {

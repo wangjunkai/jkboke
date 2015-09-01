@@ -75,7 +75,7 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-    Article.find().sort('-created').populate('user', 'username').exec(function (err, articles) {
+    Article.find().sort('-created').populate('comment', 'content').exec(function (err, articles) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -85,9 +85,9 @@ exports.list = function (req, res) {
         }
     });
 };
-exports.articleByCode = function(req,res,next,code){
+exports.articleByCode = function (req, res, next, code) {
     var search = {
-        title: {$regex: '*' + code + '*', $option: 'si'}
+        title: {$regex: code, $options: 'i'}
     }
     Article.find(search).sort('-created').exec(function (err, article) {
         if (err) return next(err);

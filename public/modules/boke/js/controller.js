@@ -8,21 +8,20 @@ bokeApp.controller('initsectionController', ['$scope', function ($scope) {
     YUYUN.yuyun.newindex.sectionAnimate.call(YUYUN.yuyun.newindex);
 }]);
 
-bokeApp.controller('SearchController', ['$scope','$location', '$stateParams', 'Articles',
-    function ($scope,$location,$stateParams,Articles) {
-        $scope.keyenter = function(event){
+bokeApp.controller('SearchController', ['$scope', '$location', '$stateParams', 'Articles',
+    function ($scope, $location, $stateParams, Articles) {
+        $scope.keyenter = function (event) {
             var keycode = event.which;
             var value = event.target.value;
-            if(keycode==13){
-                $location.path('/wenzhang/search/'+value);
+            if (keycode == 13) {
+                $location.path('/wenzhang/search/' + value);
             }
         };
-        $scope.find = function(){
+        $scope.find = function () {
             $scope.keywords = $stateParams.code;
-            $scope.articles = Articles.search.get({
+            $scope.articles = Articles.search.query({
                 keyCode: $stateParams.code
             });
-            var ab= 123;
         }
     }
 ]);

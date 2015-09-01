@@ -5,11 +5,11 @@
                 筛选的条件为
                 <span class="search_code"> "{{keywords}}"</span>
                 ,筛选的结果为
-                <span class="search_code"> "{{}}条"</span>
+                <span class="search_code"> "{{articles.length}}条"</span>
             </p>
         </div>
         <div class="lianjie_list">
-            <ul data-ng-controller="ArticleController" data-ng-init="find()">
+            <ul>
                 <li data-ng-repeat="article in articles">
                     <h3><a ui-sref='wenzhang-detail({articleId:article._id})'
                            data-ng-href="#/wenzhang/{{article._id}}">{{article.title}}</a></h3>
