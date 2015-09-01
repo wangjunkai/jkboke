@@ -2,24 +2,29 @@
 <html>
 <head lang="en">
 
-    <title>jk前端技术博客</title>
+    <title>前端技术博客</title>
     <meta charset="UTF-8">
-    <meta name="baidu-site-verification" content="np1oXrFvMZ" />
+    <meta name="baidu-site-verification" content="np1oXrFvMZ"/>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <meta name="keywords" content="MongoDB, Express, AngularJS, Node.js,前端,js,html,css">
+    <meta name="description" content="王俊凯个人前端技术博客，个人生活日志">
+
     <!-- Fav Icon -->
-    <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/modules/boke/img/brand/boke-favicon.ico" rel="shortcut icon" type="image/x-icon">
 
     <!--Application CSS Files-->
-    {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
+    {% for cssFile in cssFiles %}
+    <link rel="stylesheet" href="{{cssFile}}">
+    {% endfor %}
 
     <!-- HTML5 Shim -->
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body class="ng-cloak">
@@ -38,13 +43,13 @@
 
                 <p class="header-title inblock">关注最新前端技术 小生一o_O !</p>
             </div>
-            <div class="header-search inblock">
-                <input type="text" placeholder="输入..."/>
+            <div class="header-search inblock" data-ng-controller="SearchController">
+                <input type="text" data-ng-keyup="keyenter($event)" placeholder="输入..."/>
             </div>
         </header>
     </div>
-    <section data-ui-view=''> 
-        <div class="section-main" >
+    <section data-ui-view=''>
+        <div class="section-main">
             <div ui-view='shouye'></div>
             <div ui-view='wenzhang'></div>
             <div ui-view='jianjie'></div>
@@ -64,6 +69,29 @@
                 <ul class="nav">
                     <li class="active">标签</li>
                 </ul>
+                <div class="tag-detail">
+                    <a href="">Html5</a>
+                    <a href="">JS</a>
+                    <a href="">Css</a>
+                    <a href="">NodeJs</a>
+                    <a href="">AngularJs</a>
+                    <a href="">日常</a>
+                    <a href="">NodeJs</a>
+                    <a href="">AngularJs</a>
+                    <a href="">Html5</a>
+                    <a href="">ES5</a>
+                    <a href="">Css3</a>
+                    <a href="">Html</a>
+                    <a href="">Mongose</a>
+                    <a href="">Express</a>
+                    <a href="">MEAN</a>
+                    <a href="">前端</a>
+                    <a href="">Html5</a>
+                    <a href="">ES6</a>
+                    <a href="">Css</a>
+                    <a href="">NodeJs</a>
+                    <a href="">Css</a>
+                </div>
             </div>
             <div class="section-hot">
                 <ul class="nav">
@@ -78,7 +106,7 @@
             <a href="http://www.yuyun.me" target="_blank">王俊凯的个人博客</a> @2015
         </div>
         <div class="github">
-            <img src="https://github.com/favicon.ico" alt="GitHub" width="16" height="16" style="margin-bottom: -3px;" />
+            <img src="https://github.com/favicon.ico" alt="GitHub" width="16" height="16" style="margin-bottom: -3px;"/>
             <a href="https://github.com/wangjunkai" target="_blank">https://github.com/wangjunkai</a>
         </div>
     </footer>
@@ -89,6 +117,8 @@
 </div>
 
 <!--Application JavaScript Files-->
-{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
+{% for jsFile in jsFiles %}
+<script type="text/javascript" src="{{jsFile}}"></script>
+{% endfor %}
 </body>
 </html>

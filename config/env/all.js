@@ -2,9 +2,9 @@
 
 module.exports = {
 	app: {
-		title: 'jkboke',
+		title: '前端技术博客',
 		description: '王俊凯个人前端技术博客，个人生活日志',
-		keywords: 'MongoDB, Express, AngularJS, Node.js,前段,js,html,css'
+		keywords: 'MongoDB, Express, AngularJS, Node.js,前端,js,html,css'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
@@ -44,11 +44,13 @@ module.exports = {
 			],
 			js: [
 				'public/lib/angular/angular.js',
+				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/modules/yuyun.js',
 				'public/modules/boke/js/main.js',
 				'public/modules/boke/js/boke.js',
-				'public/modules/boke/js/controller.js'
+				'public/modules/boke/js/controller.js',
+				'public/modules/boke/js/service.js',
 			]
 		}
 	}

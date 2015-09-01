@@ -50,8 +50,9 @@ a {
 }
 
 body {
-  background: #f1f1f1;
-  font-family: "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", "Hiragino Sans GB", tahoma, arial, "\5B8B\4F53";
+  background: #e7e7e7;
+  @include text-shadow(1px 1px 1px #fff);
+  font-family: "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", "微软雅黑", "cursive", "Hiragino Sans GB", tahoma, arial, "\5B8B\4F53";
 }
 
 input, button, textarea {
@@ -62,6 +63,7 @@ section {
   position: relative;
   width: 100%;
   margin: 20px 20px 20px 0;
+  min-height: 900px;
 }
 
 nav {
@@ -95,9 +97,9 @@ nav {
 
 .header {
   @include animation(header-init-animations .5s ease-out);
-  @include background(linear-gradient(top, #FDFDFD, #ECECEC));
+  @include background(linear-gradient(top, #FCFCFC, #E5E5E5));
   border-top: 3px solid #65ADDF;
-  border-bottom: 1px solid #D3D3D3;
+  border-bottom: 1px solid #C8C8C8;
   position: fixed;
   width: 80%;
   overflow: hidden;
@@ -133,14 +135,14 @@ nav {
 .footer {
   width: 100%;
   overflow: hidden;
-  border-top: 1px solid #DADADA;
+  border-top: 1px solid #C8C8C8;
   border-bottom: 3px solid #81BBE3;
   height: 50px;
   line-height: 50px;
   text-align: center;
   font-size: 12px;
   color: #A8A8A8;
-  background: #F6F6F6;
+  background: #FFF;
   > div {
     float: left;
     padding-left: 50px;
@@ -298,7 +300,7 @@ nav {
   li {
     margin: 0 0 12px 0;
     padding: 0 0 10px 13px;
-    border-left: 3px solid #F1F1F1;
+    border-left: 3px solid #E7E7E7;
     font-size: 16px;
     cursor: pointer;
   }
@@ -350,7 +352,7 @@ nav {
     padding: 10px;
     margin: 10px 10px 10px 10px;
     position: relative;
-    @include box-shadow(0px 1px 3px rgb(184, 184, 184));
+    @include box-shadow(0px 1px 3px #949494);
     background: #FAFAFA;
   }
   > div {
@@ -398,7 +400,6 @@ nav {
       > p {
         color: #888888;
         font-size: 14px;
-        font-family: sans-serif;
         line-height: 1.5;
         font-weight: 100;
         white-space: normal;
@@ -411,7 +412,6 @@ nav {
       .other {
         font-size: 12px;
         color: #CDCDCD;
-        font-family: monospace;
         .comment, .publish, .read, .share {
           margin-right: 3px;
           img {
@@ -445,11 +445,26 @@ nav {
 
 .section-tags {
   position: absolute;
-  min-width: 350px;
+  width: 350px;
   top: 0;
   right: 0;
   .section-tag, .section-hot {
     margin: 10px;
+  }
+  .tag-detail {
+    position: relative;
+    height: 300px;
+    > a {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: "微软雅黑";
+    }
   }
 }
 
@@ -584,7 +599,6 @@ nav {
 .other {
   font-size: 12px;
   color: #CDCDCD;
-  font-family: monospace;
   .comment, .publish, .read, .share {
     margin-right: 3px;
     img {
@@ -606,10 +620,11 @@ nav {
 }
 
 article {
-  color: #8B8B8B;
+  color: #5c5c5c;
   word-break: break-all;
-  line-height: 1.5;
+  line-height: 1.8;
   min-height: 350px;
+  font-size: 14px;
 }
 
 .hr {
@@ -645,18 +660,17 @@ article {
       padding: 0 0 2px 3px;
       border-left: 2px solid #65ADDF;
       font-size: 14px;
-      color: #B6B6B6;
+      color: #646464;
     }
     .content {
       li {
-        margin: 15px 3px;
-        padding-bottom: 15px;
-        border-bottom: 1px dotted #d3d3d3;
+        margin: 25px 3px;
+        padding-bottom: 20px;
+        border-bottom: 1px dotted #A8A8A8;
         .visitor {
-          padding: 0 0 5px 0;
+          padding: 0 0 10px 0;
           font-size: 12px;
-          color: #CACACA;
-          font-family: monospace;
+          color: #A3A3A3;
           &:after {
             content: '';
             display: block;
@@ -667,16 +681,19 @@ article {
           word-break: break-all;
           text-indent: .8em;
           font-size: 12px;
-          color: #888;
-          font-family: cursive;
+          color: #515151;
         }
       }
+    }
+    .no_comment {
+      font-size: 12px;
+      margin: 20px 0 50px 20px;
     }
   }
   .publish_comment {
     input[type=text], textarea, input[type=submit] {
       @include border-radius(2px);
-      border: 1px solid #cfcfcf;
+      border: 1px solid #adadad;
       resize: none
     }
     margin: 5px 0 40px 0;
@@ -684,11 +701,11 @@ article {
       padding: 0 0 2px 3px;
       border-left: 2px solid #65ADDF;
       font-size: 14px;
-      color: #B6B6B6;
+      color: #646464;
     }
     .pen, .content {
       font-size: 12px;
-      margin: 15px 3px;
+      margin: 20px 3px;
       color: #323232;
       textarea {
         width: 310px;
@@ -704,10 +721,37 @@ article {
         background: #ffffff;
         @include transition(background .5s ease);
         cursor: pointer;
-        &:hover{
+        &:hover {
           background: #e6e6e6;
         }
       }
     }
   }
 }
+
+.introduce {
+  margin: 15px;
+  > ul {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    > li {
+      margin: 20px;
+    }
+    strong {
+    }
+    span {
+      color: #717171;
+    }
+  }
+}
+
+.search_title {
+  font-size: 12px;
+  color: #999;
+  .search_code {
+    font-size: 14px;
+    padding: 5px;
+    color: #65ADDF;
+  }
+}
+

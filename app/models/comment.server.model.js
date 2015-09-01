@@ -19,13 +19,19 @@ var CommentSchema = new Schema({
         default: '',
         trim: true
     },
-    onlineEmail:{
+    /*
+     onlineEmail:{
+     type: String,
+     default: '',
+     trim: true,
+     match: [/.+\@.+\..+/, '请填写正确的电子邮箱']
+     },*/
+    onlineName: {
         type: String,
         default: '',
-        trim: true,
-        match: [/.+\@.+\..+/, '请填写正确的电子邮箱']
+        trim: true
     },
-    onlineName:{
+    articleId:{
         type: String,
         default: '',
         trim: true

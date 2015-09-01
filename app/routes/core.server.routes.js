@@ -1,44 +1,55 @@
 'use strict';
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-	var core = require('../../app/controllers/core.server.controller');
-	var user = require('../../app/controllers/manage/user.server.controller');
-	var article = require('../../app/controllers/manage/article.server.controller');
-	var type = require('../../app/controllers/manage/type.server.controller');
-	app.route('/').get(core.index);
-	app.route('/manage').get(core.manage);
+    var core = require('../../app/controllers/core.server.controller');
+    var user = require('../../app/controllers/manage/user.server.controller');
+    var article = require('../../app/controllers/manage/article.server.controller');
+    var type = require('../../app/controllers/manage/type.server.controller');
+    var comment = require('../../app/controllers/manage/comment.server.controller');
 
-	// 登录注册路由
-	app.route('/auth/signup').post(user.signup);
-	app.route('/auth/signin').post(user.signin);
-	app.route('/auth/signout').post(user.signout);
-	// Setting up the users password api
+    app.route('/').get(core.index);
+    app.route('/manage').get(core.manage);
 
-	app.route('/auth/password').post(user.changePassword);
-	app.route('/auth/profile').post(user.changeProfile);
+    // 登录注册路由
+    app.route('/auth/signup').post(user.signup);
+    app.route('/auth/signin').post(user.signin);
+    app.route('/auth/signout').post(user.signout);
+    // Setting up the users password api
 
-	//设置文章路由
-	app.route('/article/list').get(article.list);
-	app.route('/article/add').post(user.requiresLogin, article.add);
+    app.route('/auth/password').post(user.changePassword);
+    app.route('/auth/profile').post(user.changeProfile);
 
-	app.route('/article/edit/:articleId')
-		.get(article.read)
-		.post(user.requiresLogin, article.hasAuthorization, article.update)
-		.delete(user.requiresLogin, article.hasAuthorization, article.delete);
+    //设置文章路由
+    app.route('/article/list').get(article.list);
+    app.route('/article/add').post(user.requiresLogin, article.add);
 
-	// 映射文章ID
-	app.param('articleId', article.articleByID);
+    app.route('/article/edit/:articleId')
+        .get(article.read)
+        .post(user.requiresLogin, article.hasAuthorization, article.update)
+        .delete(user.requiresLogin, article.hasAuthorization, article.delete);
 
-	//设置文章类别路由
-	app.route('/type/list').get(type.list);
-	app.route('/type/add').post(user.requiresLogin, type.add);
+    // 映射文章ID
+    app.param('articleId', article.articleByID);
+    //搜索文章路由
+    app.route('/article/search/:keyCode').get(article.read);
+    app.param('keyCode',article.articleByCode);
+    //设置文章类别路由
+    app.route('/type/list').get(type.list);
+    app.route('/type/add').post(user.requiresLogin, type.add);
 
-	app.route('/type/edit/:typeId')
-		.get(type.read)
-		.post(user.requiresLogin, type.hasAuthorization, type.update)
-		.delete(user.requiresLogin, type.hasAuthorization, type.delete);
+    app.route('/type/edit/:typeId')
+        .get(type.read)
+        .post(user.requiresLogin, type.hasAuthorization, type.update)
+        .delete(user.requiresLogin, type.hasAuthorization, type.delete);
 
-	// 映射文章类别ID
-	app.param('typeId', type.typeByID);
+    // 映射文章类别ID
+    app.param('typeId', type.typeByID);
+
+
+    //设置文章类别路由
+    app.route('/comment/list').get(comment.list);
+    app.route('/comment/add').post(comment.add, comment.list);
+    app.param('commentByArticleId', comment.commentByArticleID);
+
 };

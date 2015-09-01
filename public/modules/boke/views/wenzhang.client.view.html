@@ -56,56 +56,17 @@
         </ul>
     </div>
     <div class="lianjie_list">
-        <ul>
-            <li>
-                <h3><a ui-sref='wenzhang-detail({id:id})' data-ng-href="#/wenzhang/{{id}}">这是第一篇文章</a></h3>
+        <ul data-ng-controller="ArticleController" data-ng-init="find()">
+            <li data-ng-repeat="article in articles">
+                <h3><a ui-sref='wenzhang-detail({articleId:article._id})'
+                       data-ng-href="#/wenzhang/{{article._id}}">{{article.title}}</a></h3>
 
                 <div class="other rt">
 				<span class="publish">
-					<img src="modules/boke/img/boke/iconfont-iconriqishijian.svg" alt=""/>2015-3-5</span>
-                    <span>阅读量:1234</span>
-				<span class="comment section-a" title="评论">
-					<a href="">
-                        <img src="modules/boke/img/boke/iconfont-pinglun.svg" alt=""/>4545
-                    </a>
-				</span>
-                </div>
-            </li>
-            <li>
-                <h3><a href="">这是第一篇文章</a></h3>
-
-                <div class="other rt">
-				<span class="publish">
-					<img src="modules/boke/img/boke/iconfont-iconriqishijian.svg" alt=""/>2015-3-5</span>
-                    <span>阅读量:1234</span>
-				<span class="comment section-a" title="评论">
-					<a href="">
-                        <img src="modules/boke/img/boke/iconfont-pinglun.svg" alt=""/>4545
-                    </a>
-				</span>
-                </div>
-            </li>
-            <li>
-                <h3><a href="">这是第一篇文章</a></h3>
-
-                <div class="other rt">
-				<span class="publish">
-					<img src="modules/boke/img/boke/iconfont-iconriqishijian.svg" alt=""/>2015-3-5</span>
-                    <span>阅读量:1234</span>
-				<span class="comment section-a" title="评论">
-					<a href="">
-                        <img src="modules/boke/img/boke/iconfont-pinglun.svg" alt=""/>4545
-                    </a>
-				</span>
-                </div>
-            </li>
-            <li>
-                <h3><a href="">这是第一篇文章</a></h3>
-
-                <div class="other rt">
-				<span class="publish">
-					<img src="modules/boke/img/boke/iconfont-iconriqishijian.svg" alt=""/>2015-3-5</span>
-                    <span>阅读量:1234</span>
+					<img src="modules/boke/img/boke/iconfont-iconriqishijian.svg" alt=""/>
+                    {{article.created | date:'yyyy-MM-dd hh:mm'}}
+                </span>
+                    <span>阅读量:{{article.readNum?article.readNum:0}}</span>
 				<span class="comment section-a" title="评论">
 					<a href="">
                         <img src="modules/boke/img/boke/iconfont-pinglun.svg" alt=""/>4545

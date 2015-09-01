@@ -1,8 +1,9 @@
 (function () {
     var y = YUYUN;
+    //
     y.yuyun.index = function () {
         //this._initFun.call(this);
-    }
+    };
     y.yuyun.index.prototype = {
         init: function () {
             //页面右侧图片
@@ -23,6 +24,8 @@
             this.navparent = y.dom.query('.nav-navigation');
             this.nav = y.dom.querys('.nav-navigation > li');
             this.navview = y.dom.query('.view-active');
+            //右侧tag标签
+            this.tags = y.dom.querys('.tag-detail > a');
 
         },
         _initFun: function () {
@@ -186,13 +189,104 @@
                     'left': navview - Math.ceil(navview / 4)
                 });
             }
+        },
+        setTags: function () {
+
         }
     };
 
+
+    //螺旋标签
+    y.yuyun.tags = function () {
+        this.init.apply(this, arguments);
+    }
+
+    y.yuyun.tags.prototype = {
+        init: function () {
+            this.main = y.dom.query('.tag-detail');
+            this.list = y.dom.querys('.tag-detail > a');
+            this.llength = this.list.length;
+            this.mainw = this.main.offsetWidth / 2 - 40;
+            this.mainh = this.main.offsetHeight / 2 - 20;
+            this.r = this.mainw / 2 + 50;
+            this.tags = [];
+            this.doimage();
+            this.dostart();
+
+            var _this = this;
+            y.even.bindListenerEven(this.main, 'mouseover', function (event) {
+                var even = event || window.event;
+                _this.nostart();
+                if (even.target.tagName.toLowerCase() === 'a') {
+                    even.target.style.borderBottom = '1px solid ' + even.target.style.color;
+                }
+            });
+            y.even.bindListenerEven(this.main, 'mouseout', function (event) {
+                var even = event || window.event;
+                _this.dostart();
+                if (even.target.tagName.toLowerCase() === 'a') {
+                    even.target.style.borderBottom = '0px';
+                }
+            });
+        },
+        doimage: function () {
+            for (var i = 0; i < this.llength; i++) {
+                var k = 2 * i / (this.llength - 1) - 1;//-1~1
+                var a = Math.acos(k);//a(0~π) 弧度
+                var b = a * Math.sqrt(this.llength * Math.PI);//b(0~2π)
+                var z = this.r * Math.sin(a) * Math.cos(b);
+                var x = this.r * Math.sin(a) * Math.sin(b);
+                var y = this.r * Math.cos(a);
+                var obj = {
+                    ele: this.list[i],
+                    left: x,
+                    top: y,
+                    zIndex: z,
+                    color: "rgb(" + parseInt((Math.random()) * 150) + "," + parseInt((Math.random()) * 150) + "," + parseInt((Math.random()) * 150) + ")"
+                };
+                this.tags.push(obj);
+            }
+            this.domove();
+        },
+        domove: function () {
+            var _this = this;
+            for (var i = 0; i < _this.tags.length; i++) {
+                var alpha = (_this.tags[i].zIndex + _this.r) / (2 * _this.r);
+                _this.tags[i].ele.style.color = _this.tags[i].color;
+                _this.tags[i].ele.style.opacity = 1.2 - (alpha);
+                _this.tags[i].ele.style.filter = "alpha(opacity = " + (1.2 - (alpha)) * 100 + ")";
+                _this.tags[i].ele.style.zIndex = parseInt(1000+_this.tags[i].zIndex);
+                _this.tags[i].ele.style.left = _this.tags[i].left + _this.mainw + "px";
+                _this.tags[i].ele.style.top = _this.tags[i].top + _this.mainh + "px";
+            }
+        },
+        dostart: function () {
+            var _this = this;
+            var rad = 0.0016;
+            var maxrad = 6.28;
+            this.stime = setInterval(function () {
+                for (var i = 0; i < _this.tags.length; i++) {
+                    var z = _this.tags[i].zIndex;
+                    var x = _this.tags[i].left;
+                    var y = _this.tags[i].top;
+                    _this.tags[i].zIndex = z * Math.cos(rad) - x * Math.sin(rad);
+                    _this.tags[i].left = z * Math.sin(rad) + x * Math.cos(rad);
+                    _this.tags[i].top = y;
+                }
+
+                _this.domove();
+            }, 5);
+
+        },
+        nostart: function () {
+            clearInterval(this.stime);
+        }
+    };
     //初始化
-    angular.element(document).ready(function() {
+    angular.element(document).ready(function () {
         //手动创建angular模块
         angular.bootstrap(document, ['bokeApp']);
+        new y.yuyun.tags();
         y.yuyun.bokeinit();
     });
 
