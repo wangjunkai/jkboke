@@ -3,7 +3,7 @@
  */
 // Setting up route
 var y = YUYUN;
-y.yuyun.appConfig.applicationModuleVendorDependencies.push('ui.bootstrap','ngResource', 'ngCookies');
+y.yuyun.appConfig.applicationModuleVendorDependencies.push('ui.bootstrap','ngResource', 'ngCookies','ngSanitize');
 y.yuyun.appConfig.registerModule('manageApp', y.yuyun.appConfig.applicationModuleVendorDependencies);
 
 var manageApp = angular.module(y.yuyun.appConfig.thisApp);

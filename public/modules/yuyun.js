@@ -3,8 +3,8 @@
  */
 
 window.YUYUN = {};
-YUYUN && (YUYUN.dom = {}, YUYUN.fun = {}, YUYUN.dom = {}, YUYUN.even = {}, YUYUN.yuyun = {})
-YUYUN.yuyun && (YUYUN.yuyun.newindex = null)
+YUYUN && (YUYUN.dom = {}, YUYUN.fun = {}, YUYUN.dom = {}, YUYUN.even = {}, YUYUN.yuyun = {});
+YUYUN.yuyun && (YUYUN.yuyun.newindex = null);
 YUYUN.dom = (function () {
     var sTimer = null,
         iTimer = null;

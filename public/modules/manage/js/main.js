@@ -3,7 +3,8 @@
  */
 
 //初始化
-angular.element(document).ready(function() {
+angular.element(document).ready(function () {
     //手动创建angular模块
     angular.bootstrap(document, ['manageApp']);
 });
+

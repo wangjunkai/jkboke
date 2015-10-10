@@ -138,10 +138,13 @@ manageApp.controller('SettingsController', ['$scope', '$http', '$location', 'Use
     }
 ]);
 
-manageApp.controller('ArticleController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles', 'Types',
-    function ($scope, $stateParams, $location, Authentication, Articles, Types) {
+manageApp.controller('ArticleController', ['$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Types',
+    function ($scope, $stateParams, $sce, $location, Authentication, Articles, Types) {
+
+
         $scope.authentication = Authentication;
         $scope.types = Types.list.query();
+
         $scope.create = function () {
             var article = new Articles.add($scope.article);
             article.$save(function (response) {
@@ -169,6 +172,8 @@ manageApp.controller('ArticleController', ['$scope', '$stateParams', '$location'
 
         $scope.update = function () {
             var article = $scope.article;
+            var content = document.querySelector('#content');
+            article.content = content.value;
             Articles.edit.update({articleId: article._id}, article, function () {
                 $location.path('/manage/article/list');
             }, function (errorResponse) {
@@ -187,9 +192,16 @@ manageApp.controller('ArticleController', ['$scope', '$stateParams', '$location'
         };
 
         $scope.findOne = function () {
+
             $scope.article = Articles.edit.get({
                 articleId: $stateParams.articleId
+            }, function () {
+                var editor = $('#content').length > 0 ? $('#content').wangEditor() : false;
+                editor && editor.html($scope.article.content);
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
             });
+            $sce.trustAsHtml($scope.article.content);
         };
     }
 ]);

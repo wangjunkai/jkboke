@@ -14,12 +14,17 @@
                 </span>
                 <span>阅读量:{{article.readNum?article.readNum:0}}</span>
 				<span class="comment section-a" title="评论">
-					<a href="">
+                    <a ui-sref='wenzhang-detail({articleId:article._id})'
+                       data-ng-href="#/wenzhang/{{article._id}}" data-ng-click="goto(commentAnchor)" data-ng-init="findComment(article._id)">
                         <img src="modules/boke/img/boke/iconfont-pinglun.svg" alt=""/>
-
+                        {{article.commentCount}}
                     </a>
 				</span>
-                <span class="share" title="分享"><img src="modules/boke/img/boke/iconfont-fenxiang.svg" alt=""/></span>
+<!--
+                <div class="bdsharebuttonbox">
+                    <a onclick="return false;" href="#" id="share" class="share popup_more" data-cmd="more"
+                       title="分享"></a>
+                </div>-->
             </div>
         </li>
     </ul>

@@ -8,47 +8,50 @@
                 {{article.created | date:'yyyy-MM-dd hh:mm'}}
             </span>
 
-            <span class="share" title="分享">分享<img src="modules/boke/img/boke/iconfont-fenxiang.svg" alt=""/></span>
-        </div>
-        <div class="hr"></div>
-        <article>
-            {{article.content}}
-        </article>
-    </div>
-    <div data-ng-controller="CommentController" data-ng-init="find()" class="wenzhang_detail">
-
-        <div class="detail_comment">
-            <span class="title">评论</span>
-            <ul class="content">
-                <li data-ng-repeat="comment in comments">
-                    <div class="visitor">
-                        <span data-ng-click="setatUser($event)">{{comment.onlineName}}</span>
-                        <span class="rt">{{comment.created | date:'yyyy-MM-dd hh:mm'}}</span>
-                    </div>
-                    <p class="comment">{{comment.content}}</p>
-                </li>
-            </ul>
-
-            <div class="no_comment" data-ng-if="!comments.length">
-                暂无留下任何评论
+            <div class="bdsharebuttonbox">
+                <a onclick="return false;" href="#" data-tag="detail_share" id="share" class="share popup_more" data-cmd="more"
+                   title="分享"></a>
             </div>
-        </div>
-        <div class="publish_comment">
-            <span class="title">发表评论</span>
 
-            <form name="commentForm" data-ng-submit="create()" novalidate>
-                <div class="pen">
+            <div class="hr"></div>
+            <article ng-bind-html="article.content">
+            </article>
+        </div>
+        <div id="{{commentAnchor}}" data-ng-controller="CommentController" data-ng-init="find()" class="wenzhang_detail">
+
+            <div class="detail_comment">
+                <span class="title">评论</span>
+                <ul class="content">
+                    <li data-ng-repeat="comment in comments">
+                        <div class="visitor">
+                            <span data-ng-click="setatUser($event)">{{comment.onlineName}}</span>
+                            <span class="rt">{{comment.created | date:'yyyy-MM-dd hh:mm'}}</span>
+                        </div>
+                        <p class="comment">{{comment.content}}</p>
+                    </li>
+                </ul>
+
+                <div class="no_comment" data-ng-if="!comments.length">
+                    暂无留下任何评论
+                </div>
+            </div>
+            <div class="publish_comment">
+                <span class="title">发表评论</span>
+
+                <form name="commentForm" data-ng-submit="create()" novalidate>
+                    <div class="pen">
                     <textarea name="comment.content" data-ng-bind="comment.content" data-ng-model="comment.content"
                               placeholder="评论的内容" required></textarea>
-                </div>
-                <div class="pen">
-                    <input type="text" name="comment.onlineName" data-ng-model="comment.onlineName" placeholder="笔名"
-                           required/>
-                </div>
-                <div class="pen">
-                    <input type="submit" value="发表"/>
-                </div>
-            </form>
+                    </div>
+                    <div class="pen">
+                        <input type="text" name="comment.onlineName" data-ng-model="comment.onlineName" placeholder="笔名"
+                               required/>
+                    </div>
+                    <div class="pen">
+                        <input type="submit" value="发表"/>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

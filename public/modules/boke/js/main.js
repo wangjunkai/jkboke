@@ -157,7 +157,19 @@
                 });
             }();
         },
+        bdShare: function () {
 
+            window._bd_share_config = {
+                share: [{
+                    "tag": 'detail_share',
+                    "bdSize": 16,
+                    "bdCustomStyle": '/modules/boke/css/share.css'
+                }]
+            };
+            var content = document.getElementsByTagName('head')[0] || body;
+            var script = content.appendChild(document.createElement('script'));
+            script.src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5);
+        },
         //section初始化
         sectionAnimate: function () {
             var _this = this;
@@ -255,7 +267,7 @@
                 _this.tags[i].ele.style.color = _this.tags[i].color;
                 _this.tags[i].ele.style.opacity = 1.2 - (alpha);
                 _this.tags[i].ele.style.filter = "alpha(opacity = " + (1.2 - (alpha)) * 100 + ")";
-                _this.tags[i].ele.style.zIndex = parseInt(1000+_this.tags[i].zIndex);
+                _this.tags[i].ele.style.zIndex = parseInt(1000 + _this.tags[i].zIndex);
                 _this.tags[i].ele.style.left = _this.tags[i].left + _this.mainw + "px";
                 _this.tags[i].ele.style.top = _this.tags[i].top + _this.mainh + "px";
             }
@@ -288,6 +300,7 @@
         angular.bootstrap(document, ['bokeApp']);
         new y.yuyun.tags();
         y.yuyun.bokeinit();
+
     });
 
 }());

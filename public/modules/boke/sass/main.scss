@@ -5,11 +5,6 @@ body, header, section, footer, p, div, span, ul, li {
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 @media screen and (max-width: 1600px) {
   .main-left {
     width: 100% !important;
@@ -54,6 +49,24 @@ body {
   @include text-shadow(1px 1px 1px #fff);
   font-family: "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", "微软雅黑", "cursive", "Hiragino Sans GB", tahoma, arial, "\5B8B\4F53";
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+pre {
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  @include text-shadow(0px 0px 0px);
+
+}
+
 
 input, button, textarea {
   outline: none;
@@ -642,7 +655,8 @@ article {
 }
 
 .wenzhang_detail {
-  margin: 15px;
+  margin: 30px 15px;
+
   h2 {
     text-align: center;
   }
@@ -754,4 +768,17 @@ article {
     color: #65ADDF;
   }
 }
-
+#share{
+  background-position: 0 0;
+}
+.popup_more{
+  background-image: url("../img/boke/iconfont-fenxiang.svg");
+  @include background-size(14px 14px);
+  background-position: 0 0;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+}
+.bdsharebuttonbox{
+  display: inline;
+}

@@ -25,7 +25,7 @@ module.exports = function (app) {
     app.route('/article/add').post(user.requiresLogin, article.add);
 
     app.route('/article/edit/:articleId')
-        .get(article.read)
+        .get(article.update, article.read)
         .post(user.requiresLogin, article.hasAuthorization, article.update)
         .delete(user.requiresLogin, article.hasAuthorization, article.delete);
 
@@ -33,7 +33,7 @@ module.exports = function (app) {
     app.param('articleId', article.articleByID);
     //搜索文章路由
     app.route('/article/search/:keyCode').get(article.read);
-    app.param('keyCode',article.articleByCode);
+    app.param('keyCode', article.articleByCode);
     //设置文章类别路由
     app.route('/type/list').get(type.list);
     app.route('/type/add').post(user.requiresLogin, type.add);

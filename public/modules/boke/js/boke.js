@@ -2,7 +2,7 @@
 
 // Setting up route
 var y = YUYUN;
-y.yuyun.appConfig.applicationModuleVendorDependencies.push('ngResource');
+y.yuyun.appConfig.applicationModuleVendorDependencies.push('ngResource','ngSanitize');
 y.yuyun.appConfig.registerModule('bokeApp', y.yuyun.appConfig.applicationModuleVendorDependencies);
 var bokeApp = angular.module(y.yuyun.appConfig.thisApp);
 

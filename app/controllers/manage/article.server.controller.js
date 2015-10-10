@@ -8,7 +8,8 @@ var _ = require('lodash'),
     errorHandler = require('../errors.server.controller'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    Article = mongoose.model('Article');
+    Article = mongoose.model('Article'),
+    Comment = mongoose.model('Comment');
 
 /**
  * Create a article
@@ -38,7 +39,7 @@ exports.read = function (req, res) {
 /**
  * Update a article
  */
-exports.update = function (req, res) {
+exports.update = function (req, res, next) {
     var article = req.article;
 
     article = _.extend(article, req.body);
@@ -51,6 +52,8 @@ exports.update = function (req, res) {
         } else {
             res.json(article);
         }
+
+        next();
     });
 };
 
@@ -103,6 +106,7 @@ exports.articleByID = function (req, res, next, id) {
     Article.findById(id).populate([{path: 'user', select: 'username'}]).exec(function (err, article) {
         if (err) return next(err);
         if (!article) return next(new Error('Failed to load article ' + id));
+        article.readNum++;
         req.article = article;
         next();
     });

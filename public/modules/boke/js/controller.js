@@ -6,6 +6,7 @@
 bokeApp.controller('initsectionController', ['$scope', function ($scope) {
     //YUYUN.yuyun.bokeinit();
     YUYUN.yuyun.newindex.sectionAnimate.call(YUYUN.yuyun.newindex);
+    YUYUN.yuyun.newindex.bdShare.call(YUYUN.yuyun.newindex);
 }]);
 
 bokeApp.controller('SearchController', ['$scope', '$location', '$stateParams', 'Articles',
@@ -26,16 +27,37 @@ bokeApp.controller('SearchController', ['$scope', '$location', '$stateParams', '
     }
 ]);
 
-bokeApp.controller('ArticleController', ['$scope', '$stateParams', 'Articles',
-        function ($scope, $stateParams, Articles) {
+bokeApp.controller('ArticleController', ['$scope','$location', '$stateParams', '$sce', '$anchorScroll', 'Articles', 'Comments',
+        function ($scope,$location, $stateParams, $sce, $anchorScroll, Articles, Comments) {
+            $scope.commentAnchor = 'commentAnchor';
             $scope.find = function () {
-                $scope.articles = Articles.list.query();
+                $scope.articles = Articles.list.query(function (response) {
+                    $scope.articles = response;
+                    for (var i = 0; i < response.length; i++) {
+                        var c = function (i) {
+                            Comments.list.query({
+                                articleId: response[i]._id
+                            }, function (newre) {
+                                $scope.articles[i].commentCount = newre.length;
+                            });
+                        }(i);
+                    }
+                });
             };
             $scope.findOne = function () {
                 $scope.article = Articles.edit.get({
                     articleId: $stateParams.articleId
+                }, function () {
+                    $scope.article.content = $sce.trustAsHtml($scope.article.content);
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
                 });
+
             };
+            $scope.goto = function(id){
+                $location.hash(id);
+                $anchorScroll();
+            }
         }]
 );
 
